@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rose Petals & Crackers Effect</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: white;
+        overflow: hidden;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Rose Petals */
+    .petal {
+        position: absolute;
+        top: -10%;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle at top left, #ff6b81, #c9184a);
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(45deg);
+        opacity: 0.8;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Crackers / Sparkles */
+    .sparkle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(circle, gold, orange);
+        border-radius: 50%;
+        animation: sparkle 1.5s infinite ease-in-out;
+    }
+
+    @keyframes sparkle {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+
+    /* Sprinkle Glitter */
+    .glitter {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: silver;
+        border-radius: 50%;
+        animation: glitterFall 3s linear infinite;
+    }
+
+    @keyframes glitterFall {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<script>
+    function createPetal() {
+        const petal = document.createElement("div");
+        petal.classList.add("petal");
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+        document.body.appendChild(petal);
+
+        setTimeout(() => petal.remove(), 10000);
+    }
+
+    function createSparkle() {
+        const sparkle = document.createElement("div");
+        sparkle.classList.add("sparkle");
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => sparkle.remove(), 2000);
+    }
+
+    function createGlitter() {
+        const glitter = document.createElement("div");
+        glitter.classList.add("glitter");
+        glitter.style.left = Math.random() * 100 + "vw";
+        glitter.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(glitter);
+
+        setTimeout(() => glitter.remove(), 5000);
+    }
+
+    setInterval(createPetal, 300);
+    setInterval(createSparkle, 150);
+    setInterval(createGlitter, 200);
+</script>
+
+</body>
+</html>
